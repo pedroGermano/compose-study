@@ -10,10 +10,10 @@ services:
   mysql:
     image: mysql:8.3.0
     environment:
-      MYSQL_ROOT_PASSWORD: senha1234
-      MYSQL_DATABASE: wordpress
-      MYSQL_USER: UserBlog
-      MYSQL_PASSWORD: PwdBlog
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${DB_DATABSE}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
     ports:
       - 3306:3306
     volumes:
@@ -25,9 +25,9 @@ services:
     image: wordpress:6.4.3
     environment:
       WORDPRESS_DB_HOST: mysql:3306
-      WORDPRESS_DB_USER: UserBlog
-      WORDPRESS_DB_PASSWORD: PwdBlog
-      WORDPRESS_DB_NAME: wordpress
+      WORDPRESS_DB_USER: ${DB_USER}
+      WORDPRESS_DB_PASSWORD: ${DB_PASSWORD}
+      WORDPRESS_DB_NAME: ${DB_DATABASE}
     volumes:
       - wordpress_vol:/var/www/html
     ports:
